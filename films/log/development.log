@@ -1,0 +1,80 @@
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (2.9ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (1.8ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateFilms (20170729172919)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.6ms)[0m  [1m[35mCREATE TABLE "films" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar, "year" integer, "director" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20170729172919"]]
+  [1m[35m (1.7ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateViewers (20170729172929)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.6ms)[0m  [1m[35mCREATE TABLE "viewers" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "age" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20170729172929"]]
+  [1m[35m (2.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2017-07-29 17:31:21.908505"], ["updated_at", "2017-07-29 17:31:21.908505"]]
+  [1m[35m (2.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateFilmsViewersJoinTable (20170729173310)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.5ms)[0m  [1m[35mCREATE TABLE "films_viewers" ("film_id" integer NOT NULL, "viewer_id" integer NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE  INDEX "index_films_viewers_on_film_id" ON "films_viewers" ("film_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_films_viewers_on_film_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_films_viewers_on_film_id' AND type='index'
+[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE  INDEX "index_films_viewers_on_viewer_id" ON "films_viewers" ("viewer_id")[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20170729173310"]]
+  [1m[35m (1.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.4ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (1.2ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_films_viewers_on_viewer_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_films_viewers_on_viewer_id' AND type='index'
+[0m
+  [1m[35m (0.4ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_films_viewers_on_film_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_films_viewers_on_film_id' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.7ms)[0m  [1m[32mINSERT INTO "films" ("title", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["title", "jaws"], ["created_at", "2017-07-29 17:37:07.030468"], ["updated_at", "2017-07-29 17:37:07.030468"]]
+  [1m[35m (20.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "films" ("title", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["title", "jurassic park"], ["created_at", "2017-07-29 17:37:15.125509"], ["updated_at", "2017-07-29 17:37:15.125509"]]
+  [1m[35m (15.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.9ms)[0m  [1m[32mINSERT INTO "viewers" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "sandy"], ["created_at", "2017-07-29 17:37:30.283268"], ["updated_at", "2017-07-29 17:37:30.283268"]]
+  [1m[35m (49.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mViewer Load (0.4ms)[0m  [1m[34mSELECT  "viewers".* FROM "viewers" ORDER BY "viewers"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[36mFilm Load (0.3ms)[0m  [1m[34mSELECT  "films".* FROM "films" ORDER BY "films"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO "films_viewers" ("film_id", "viewer_id") VALUES (?, ?)[0m  [["film_id", 1], ["viewer_id", 1]]
+  [1m[35m (1.9ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mFilm Load (0.4ms)[0m  [1m[34mSELECT  "films".* FROM "films" INNER JOIN "films_viewers" ON "films"."id" = "films_viewers"."film_id" WHERE "films_viewers"."viewer_id" = ? LIMIT ?[0m  [["viewer_id", 1], ["LIMIT", 11]]
+  [1m[36mViewer Load (0.2ms)[0m  [1m[34mSELECT  "viewers".* FROM "viewers" ORDER BY "viewers"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[36mFilm Load (0.4ms)[0m  [1m[34mSELECT  "films".* FROM "films" ORDER BY "films"."id" ASC LIMIT ? OFFSET ?[0m  [["LIMIT", 1], ["OFFSET", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO "films_viewers" ("film_id", "viewer_id") VALUES (?, ?)[0m  [["film_id", 2], ["viewer_id", 1]]
+  [1m[35m (43.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mFilm Load (0.2ms)[0m  [1m[34mSELECT  "films".* FROM "films" INNER JOIN "films_viewers" ON "films"."id" = "films_viewers"."film_id" WHERE "films_viewers"."viewer_id" = ? LIMIT ?[0m  [["viewer_id", 1], ["LIMIT", 11]]
+  [1m[36mViewer Load (0.3ms)[0m  [1m[34mSELECT  "viewers".* FROM "viewers" ORDER BY "viewers"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[36mViewer Load (0.2ms)[0m  [1m[34mSELECT  "viewers".* FROM "viewers" ORDER BY "viewers"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[36mFilm Load (0.2ms)[0m  [1m[34mSELECT  "films".* FROM "films" INNER JOIN "films_viewers" ON "films"."id" = "films_viewers"."film_id" WHERE "films_viewers"."viewer_id" = ? LIMIT ?[0m  [["viewer_id", 1], ["LIMIT", 11]]
