@@ -34,3 +34,33 @@ Migrating to CreateCountries (20170729143003)
   [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
   [1m[35m (0.1ms)[0m  [1m[36mcommit transaction[0m
   [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "people" ("name", "age", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "Joe"], ["age", 25], ["created_at", "2017-07-29 14:34:07.146255"], ["updated_at", "2017-07-29 14:34:07.146255"]]
+  [1m[35m (1.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "people" ("name", "age", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "Jim"], ["age", 35], ["created_at", "2017-07-29 14:34:17.499397"], ["updated_at", "2017-07-29 14:34:17.499397"]]
+  [1m[35m (9.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "countries" ("name", "national_animal", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "Canada"], ["national_animal", "beaver"], ["created_at", "2017-07-29 14:35:12.642737"], ["updated_at", "2017-07-29 14:35:12.642737"]]
+  [1m[35m (2.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "countries" ("name", "national_animal", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "USA"], ["national_animal", "eagle"], ["created_at", "2017-07-29 14:35:31.086118"], ["updated_at", "2017-07-29 14:35:31.086118"]]
+  [1m[35m (9.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mPerson Load (0.2ms)[0m  [1m[34mSELECT  "people".* FROM "people" WHERE "people"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCountry Load (0.2ms)[0m  [1m[34mSELECT  "countries".* FROM "countries" WHERE "countries"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "addresses" ("person_id", "street_address", "country_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["person_id", 1], ["street_address", "1234 Street Blvd"], ["country_id", 1], ["created_at", "2017-07-29 14:36:38.598544"], ["updated_at", "2017-07-29 14:36:38.598544"]]
+  [1m[35m (2.9ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mPerson Load (0.2ms)[0m  [1m[34mSELECT  "people".* FROM "people" WHERE "people"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCountry Load (0.1ms)[0m  [1m[34mSELECT  "countries".* FROM "countries" WHERE "countries"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO "addresses" ("person_id", "street_address", "country_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["person_id", 2], ["street_address", "7465 Dirt Road"], ["country_id", 2], ["created_at", "2017-07-29 14:37:05.972172"], ["updated_at", "2017-07-29 14:37:05.972172"]]
+  [1m[35m (3.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mPerson Load (0.5ms)[0m  [1m[34mSELECT  "people".* FROM "people" LIMIT ?[0m  [["LIMIT", 11]]
+  [1m[36mPerson Load (0.4ms)[0m  [1m[34mSELECT  "people".* FROM "people" ORDER BY "people"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[36mPerson Load (0.2ms)[0m  [1m[34mSELECT  "people".* FROM "people" ORDER BY "people"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[36mAddress Load (0.3ms)[0m  [1m[34mSELECT  "addresses".* FROM "addresses" WHERE "addresses"."person_id" = ? LIMIT ?[0m  [["person_id", 1], ["LIMIT", 11]]
+  [1m[36mAddress Load (0.4ms)[0m  [1m[34mSELECT  "addresses".* FROM "addresses" ORDER BY "addresses"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[36mCountry Load (0.2ms)[0m  [1m[34mSELECT  "countries".* FROM "countries" WHERE "countries"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mAddress Load (0.4ms)[0m  [1m[34mSELECT  "addresses".* FROM "addresses" ORDER BY "addresses"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[36mCountry Load (0.2ms)[0m  [1m[34mSELECT  "countries".* FROM "countries" WHERE "countries"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
