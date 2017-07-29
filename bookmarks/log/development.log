@@ -48,3 +48,66 @@ Migrating to CreateBookmarks (20170729174407)
             FROM sqlite_temp_master
             WHERE name='index_bookmarks_on_article_id' AND type='index'
 [0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "users" ("username", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["username", "dragonfly"], ["created_at", "2017-07-29 18:00:48.134359"], ["updated_at", "2017-07-29 18:00:48.134359"]]
+  [1m[35m (1.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (1.3ms)[0m  [1m[32mINSERT INTO "users" ("username", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["username", "kitty"], ["created_at", "2017-07-29 18:01:03.409812"], ["updated_at", "2017-07-29 18:01:03.409812"]]
+  [1m[35m (2.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "articles" ("title", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["title", "Kitties are cool"], ["created_at", "2017-07-29 18:01:31.264290"], ["updated_at", "2017-07-29 18:01:31.264290"]]
+  [1m[35m (18.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.7ms)[0m  [1m[32mINSERT INTO "articles" ("title", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["title", "I like bugs"], ["created_at", "2017-07-29 18:01:46.219543"], ["updated_at", "2017-07-29 18:01:46.219543"]]
+  [1m[35m (19.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to DropBookmarksTable (20170729180810)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.6ms)[0m  [1m[35mDROP TABLE "bookmarks"[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20170729180810"]]
+  [1m[35m (16.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to RecreatesBookmarksTable (20170729181200)
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to RecreatesBookmarksTable (20170729181200)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.5ms)[0m  [1m[35mCREATE TABLE "bookmarks" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "comments" text, "article_id" integer, "user_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20170729181200"]]
+  [1m[35m (17.9ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "users" ("username", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["username", "dragonfly"], ["created_at", "2017-07-29 18:15:29.156094"], ["updated_at", "2017-07-29 18:15:29.156094"]]
+  [1m[35m (24.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.7ms)[0m  [1m[32mINSERT INTO "users" ("username", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["username", "kitty"], ["created_at", "2017-07-29 18:15:33.793540"], ["updated_at", "2017-07-29 18:15:33.793540"]]
+  [1m[35m (9.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "articles" ("title", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["title", "Kitties are cool"], ["created_at", "2017-07-29 18:15:39.153830"], ["updated_at", "2017-07-29 18:15:39.153830"]]
+  [1m[35m (2.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.8ms)[0m  [1m[32mINSERT INTO "articles" ("title", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["title", "I like bugs"], ["created_at", "2017-07-29 18:15:43.977257"], ["updated_at", "2017-07-29 18:15:43.977257"]]
+  [1m[35m (10.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mArticle Load (0.2ms)[0m  [1m[34mSELECT  "articles".* FROM "articles" WHERE "articles"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "bookmarks" ("article_id", "user_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["article_id", 1], ["user_id", 2], ["created_at", "2017-07-29 18:18:53.832287"], ["updated_at", "2017-07-29 18:18:53.832287"]]
+  [1m[35m (8.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[36mArticle Load (0.2ms)[0m  [1m[34mSELECT  "articles".* FROM "articles" INNER JOIN "bookmarks" ON "articles"."id" = "bookmarks"."article_id" WHERE "bookmarks"."user_id" = ? LIMIT ?[0m  [["user_id", 1], ["LIMIT", 11]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mArticle Load (0.1ms)[0m  [1m[34mSELECT  "articles".* FROM "articles" WHERE "articles"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "bookmarks" ("article_id", "user_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["article_id", 1], ["user_id", 1], ["created_at", "2017-07-29 18:19:33.774523"], ["updated_at", "2017-07-29 18:19:33.774523"]]
+  [1m[35m (12.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[36mArticle Load (0.2ms)[0m  [1m[34mSELECT  "articles".* FROM "articles" INNER JOIN "bookmarks" ON "articles"."id" = "bookmarks"."article_id" WHERE "bookmarks"."user_id" = ? LIMIT ?[0m  [["user_id", 1], ["LIMIT", 11]]
+  [1m[36mArticle Load (0.2ms)[0m  [1m[34mSELECT  "articles".* FROM "articles" ORDER BY "articles"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" INNER JOIN "bookmarks" ON "users"."id" = "bookmarks"."user_id" WHERE "bookmarks"."article_id" = ? LIMIT ?[0m  [["article_id", 1], ["LIMIT", 11]]
