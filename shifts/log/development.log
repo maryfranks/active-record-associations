@@ -23,3 +23,57 @@ Migrating to CreateShifts (20170729163614)
   [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
   [1m[35m (0.1ms)[0m  [1m[36mcommit transaction[0m
   [1m[35m (5.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateShiftsWorkersJoinTable (20170729164326)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.5ms)[0m  [1m[35mCREATE TABLE "shifts_workers" ("shift_id" integer NOT NULL, "worker_id" integer NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE  INDEX "index_shifts_workers_on_shift_id" ON "shifts_workers" ("shift_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_shifts_workers_on_shift_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_shifts_workers_on_shift_id' AND type='index'
+[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE  INDEX "index_shifts_workers_on_worker_id" ON "shifts_workers" ("worker_id")[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20170729164326"]]
+  [1m[35m (13.9ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (4.3ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_shifts_workers_on_worker_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_shifts_workers_on_worker_id' AND type='index'
+[0m
+  [1m[35m (0.2ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_shifts_workers_on_shift_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_shifts_workers_on_shift_id' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "workers" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "joe"], ["created_at", "2017-07-29 16:46:29.116401"], ["updated_at", "2017-07-29 16:46:29.116401"]]
+  [1m[35m (1.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "shifts" ("created_at", "updated_at") VALUES (?, ?)[0m  [["created_at", "2017-07-29 16:46:42.090636"], ["updated_at", "2017-07-29 16:46:42.090636"]]
+  [1m[35m (4.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mWorker Load (0.5ms)[0m  [1m[34mSELECT  "workers".* FROM "workers" ORDER BY "workers"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[36mWorker Load (0.3ms)[0m  [1m[34mSELECT  "workers".* FROM "workers" ORDER BY "workers"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[36mShift Load (0.3ms)[0m  [1m[34mSELECT  "shifts".* FROM "shifts" ORDER BY "shifts"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO "shifts_workers" ("shift_id", "worker_id") VALUES (?, ?)[0m  [["shift_id", 1], ["worker_id", 1]]
+  [1m[35m (21.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mShift Load (0.4ms)[0m  [1m[34mSELECT  "shifts".* FROM "shifts" INNER JOIN "shifts_workers" ON "shifts"."id" = "shifts_workers"."shift_id" WHERE "shifts_workers"."worker_id" = ? LIMIT ?[0m  [["worker_id", 1], ["LIMIT", 11]]
+  [1m[36mWorker Load (0.3ms)[0m  [1m[34mSELECT  "workers".* FROM "workers" ORDER BY "workers"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[36mShift Load (0.2ms)[0m  [1m[34mSELECT  "shifts".* FROM "shifts" INNER JOIN "shifts_workers" ON "shifts"."id" = "shifts_workers"."shift_id" WHERE "shifts_workers"."worker_id" = ? LIMIT ?[0m  [["worker_id", 1], ["LIMIT", 11]]
+  [1m[36mShift Load (0.2ms)[0m  [1m[34mSELECT  "shifts".* FROM "shifts" ORDER BY "shifts"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[36mWorker Load (0.2ms)[0m  [1m[34mSELECT  "workers".* FROM "workers" INNER JOIN "shifts_workers" ON "workers"."id" = "shifts_workers"."worker_id" WHERE "shifts_workers"."shift_id" = ? LIMIT ?[0m  [["shift_id", 1], ["LIMIT", 11]]
